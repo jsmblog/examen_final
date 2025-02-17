@@ -10,10 +10,6 @@ export const assignGrade = async (req, res) => {
       return res.status(400).json({
         message: 'La calificación debe ser un valor entre 0 y 10'
       });
-    }else if(!studentId || !teacherId || !classId) {
-        return res.status(400).json({
-            message: 'Todos los campos son requeridos'
-        });
     }
     const newGrade = await grade.create({ grade: gradeValue, studentId, teacherId, classId });
     res.status(201).json({

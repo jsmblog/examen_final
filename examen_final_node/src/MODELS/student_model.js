@@ -1,6 +1,7 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../DB/db_conexion.js";
 import { classModel } from "./curses_model.js";
+import { teacher } from "./teacher_model.js";
 
 export const student = sequelize.define('student', {
     id: {
@@ -28,11 +29,17 @@ export const student = sequelize.define('student', {
             model: classModel,
             key: 'id'
         }
+    },
+    teacherId:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: teacher,
+            key: 'id'
+        }
     }
 }, {
     timestamps: false
 });
 
-classModel.hasMany(student, { foreignKey: 'classId' });
-student.belongsTo(classModel, { foreignKey: 'classId' });
 

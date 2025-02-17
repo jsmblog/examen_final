@@ -1,8 +1,10 @@
 import express from 'express';
-import { registerTeacher } from '../CONTROLLER/teacher_controller.js';
+import { loginTeacher, registerTeacher ,getAllTeachers} from '../CONTROLLER/teacher_controller.js';
 
 const router = express.Router();
 
+router.post('/login', loginTeacher); 
 router.post('/teachers', registerTeacher);
+router.get('/teachers', getAllTeachers);
 
 export default router;

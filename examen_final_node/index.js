@@ -5,6 +5,7 @@ import studentRoutes from './src/ROUTER/student_router.js';
 import courseRoutes from './src/ROUTER/curses_router.js';
 import gradeRoutes from './src/ROUTER/grades_router.js';
 import { sequelize } from './src/DB/db_conexion.js';
+import "./src/MODELS/relations.js";
 
 import cors from 'cors'
 const CURRENT_PORT  = PORT || 3000;
@@ -25,7 +26,7 @@ const initialize = async () => {
     try {
         await sequelize.authenticate();
         console.log("Connecting...");
-        await sequelize.sync({alter: false});
+        await sequelize.sync({alter: true});
         console.log('Connection has been established successfully.');
         app.listen(CURRENT_PORT, () => {
             console.log(`Server running on port ${CURRENT_PORT}`);
